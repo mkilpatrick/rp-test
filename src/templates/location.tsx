@@ -22,7 +22,7 @@ import {
 } from "@yext/pages";
 import { isProduction } from "@yext/pages/util";
 import "../index.css";
-import Favicon from "../assets/images/yext-favicon.ico";
+import faviconUrl from "../assets/images/yext-favicon.ico";
 import About from "../components/About";
 import Banner from "../components/Banner";
 import Details from "../components/Details";
@@ -123,7 +123,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         attributes: {
           rel: "icon",
           type: "image/x-icon",
-          href: Favicon,
+          href: faviconUrl,
         },
       },
     ],
@@ -175,8 +175,10 @@ const Location: Template<TemplateRenderProps> = ({
     dm_directoryParents,
   } = document;
 
+
   return (
     <>
+      {/* <link rel="icon" type="image/x-icon" href={faviconUrl}></link> */}
       <PageLayout>
         <Banner name={name} address={address} />
         <div className="centered-container">
@@ -190,6 +192,8 @@ const Location: Template<TemplateRenderProps> = ({
             {description && <About name={name} description={description} />}
           </div>
         </div>
+        {/* <div>Favicon: {faviconUrl}</div> */}
+        {/* <div>Favicon2: <Favicon /></div> */}
       </PageLayout>
       {/* This component displays a link to the entity that represents the given page in the Knowledge Graph*/}
       {!isProduction(siteDomain) && <EditTool data={document} />}
