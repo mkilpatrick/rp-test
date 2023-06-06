@@ -175,10 +175,10 @@ const Location: Template<TemplateRenderProps> = ({
     dm_directoryParents,
   } = document;
 
+  const [count, setCount] = React.useState(0);
 
   return (
     <>
-      {/* <link rel="icon" type="image/x-icon" href={faviconUrl}></link> */}
       <PageLayout>
         <Banner name={name} address={address} />
         <div className="centered-container">
@@ -191,9 +191,11 @@ const Location: Template<TemplateRenderProps> = ({
             {hours && <Hours title={"Restaurant Hours"} hours={hours} />}
             {description && <About name={name} description={description} />}
           </div>
+          <div>
+            <button onClick={() => setCount(c => c + 1)}>Click Me</button>
+            {count}
+          </div>
         </div>
-        {/* <div>Favicon: {faviconUrl}</div> */}
-        {/* <div>Favicon2: <Favicon /></div> */}
       </PageLayout>
       {/* This component displays a link to the entity that represents the given page in the Knowledge Graph*/}
       {!isProduction(siteDomain) && <EditTool data={document} />}
