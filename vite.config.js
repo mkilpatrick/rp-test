@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import yextSSG from "@yext/pages/vite-plugin";
 
 export default defineConfig({
-  // base: "",
+  base: "/subdirectory/",
   plugins: [react(), yextSSG()],
   experimental: {
     renderBuiltUrl(filename, { hostId, hostType, type }) {
@@ -11,7 +11,7 @@ export default defineConfig({
         if (filename.at(0) === '/') {
           return filename.substring(1);
         }
-        return filename;
+        return "subdirectory/" + filename;
       }
       return { relative: true }
 
