@@ -20,7 +20,7 @@ import {
   TemplateRenderProps,
   TransformProps,
 } from "@yext/pages";
-import { isProduction } from "@yext/pages/util";
+import { getRuntime, isProduction } from "@yext/pages/util";
 import "../index.css";
 import faviconUrl from "../assets/images/yext-favicon.ico";
 import About from "../components/About";
@@ -30,11 +30,14 @@ import Hours from "../components/Hours";
 import PageLayout from "../components/PageLayout";
 import EditTool from "../components/EditTool";
 import BreadCrumbs from "../components/Breadcrumbs";
+import LocationStream from "../types/autogen";
+import profileSVG from "../assets/images/profile.svg";
 
 /**
  * Required when Knowledge Graph data is used for a template.
  */
 export const config: TemplateConfig = {
+  hydrate: true,
   stream: {
     $id: "location-stream",
     // Defines the scope of entities that qualify for this stream.
@@ -80,11 +83,7 @@ export const config: TemplateConfig = {
  * and ensure that each entity has the slug field pouplated.
  */
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return document.slug
-    ? document.slug
-    : `${document.locale}/${document.address.region}/${document.address.city}/${
-        document.address.line1
-      }-${document.id.toString()}`;
+  return `foo/${document.slug}`;
 };
 
 /**
@@ -151,6 +150,22 @@ export const transformProps: TransformProps<any> = async (data) => {
   };
 };
 
+// export interface TemplateRenderProps2<T = {}> extends TemplateProps<T> {
+//   /**
+//    * The path that the generated file will live at on the site, as defined
+//    * by the {@link GetPath} function.
+//    */
+//   path: string;
+//   /**
+//    * The relative path from the generated page to the root of the site.
+//    * i.e. The path example/path/foo would have the relativePrefixToRoot
+//    * of '../../'.
+//    */
+//   relativePrefixToRoot: string;
+// }
+
+// export type Template2<T extends TemplateRenderProps2> = (props: T) => JSX.Element;
+
 /**
  * This is the main template. It can have any name as long as it's the default export.
  * The props passed in here are the direct stream document defined by `config`.
@@ -195,6 +210,8 @@ const Location: Template<TemplateRenderProps> = ({
             <button onClick={() => setCount(c => c + 1)}>Click Me</button>
             {count}
           </div>
+          {!getRuntime().isServerSide &&
+            <img src={profileSVG} className="h-[30px] w-[30px]" alt="" />}
         </div>
       </PageLayout>
       {/* This component displays a link to the entity that represents the given page in the Knowledge Graph*/}
