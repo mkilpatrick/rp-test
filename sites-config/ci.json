@@ -3,7 +3,7 @@
     "assets": [
       {
         "root": "dist",
-        "pattern": "subdirectory/assets/**/*"
+        "pattern": "assets/**/*"
       }
     ],
     "features": "sites-config/features.json",
@@ -12,11 +12,11 @@
         "pluginName": "PagesGenerator",
         "sourceFiles": [
           {
-            "root": "dist/subdirectory/plugin",
+            "root": "dist/plugin",
             "pattern": "*{.ts,.json}"
           },
           {
-            "root": "dist/subdirectory",
+            "root": "dist",
             "pattern": "assets/{server,static,renderer,render}/**/*{.js,.css}"
           }
         ],
