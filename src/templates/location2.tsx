@@ -87,16 +87,6 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 };
 
 /**
- * Defines a list of paths which will redirect to the path created by getPath.
- *
- * NOTE: This currently has no impact on the local dev path. Redirects will be setup on
- * a new deploy.
- */
-export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-  return [`index-old/${document.locale}/${document.id.toString()}`];
-};
-
-/**
  * This allows the user to define a function which will take in their template
  * data and produce a HeadConfig object. When the site is generated, the HeadConfig
  * will be used to generate the inner contents of the HTML document's <head> tag.
