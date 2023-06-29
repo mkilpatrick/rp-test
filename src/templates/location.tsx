@@ -103,6 +103,7 @@ export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
  * This can include the title, meta tags, script tags, etc.
  */
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+  relativePrefixToRoot,
   document,
 }): HeadConfig => {
   return {
@@ -122,7 +123,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         attributes: {
           rel: "icon",
           type: "image/x-icon",
-          href: faviconUrl,
+          href: relativePrefixToRoot + faviconUrl,
         },
       },
     ],
@@ -211,7 +212,7 @@ const Location: Template<TemplateRenderProps> = ({
             {count}
           </div>
           {!getRuntime().isServerSide &&
-            <img src={profileSVG} className="h-[30px] w-[30px]" alt="" />}
+            <img src={relativePrefixToRoot + profileSVG} className="h-[30px] w-[30px]" alt="" />}
         </div>
       </PageLayout>
       {/* This component displays a link to the entity that represents the given page in the Knowledge Graph*/}
