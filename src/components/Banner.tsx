@@ -6,7 +6,7 @@ import tacosUrl from "../assets/images/tacos-1.avif";
 export interface BannerProps {
   name?: string;
   address?: Address;
-  relativePrefixToPath?: string;
+  relativePrefixToRoot?: string;
 }
 
 const renderPrettyAddress = (address?: Address) => {
@@ -22,12 +22,12 @@ const renderPrettyAddress = (address?: Address) => {
 };
 
 const Banner = (props: BannerProps) => {
-  const { name, address, relativePrefixToPath } = props;
+  const { name, address, relativePrefixToRoot } = props;
 
   return (
     <>
       <div
-        className={`relative z-10 w-full bg-cover bg-center h-96 bg-[url(${relativePrefixToPath + tacosUrl})] `}
+        className={`relative z-10 w-full bg-cover bg-center h-96 bg-[url(${relativePrefixToRoot + tacosUrl})] `}
       >
         <div className="absolute left-0 right-0 flex flex-col items-center">
           <div className="w-96 my-8 rounded-xl bg-amber-500 border-8 shadow-xl border-amber-600 px-4 py-2 text-center">
