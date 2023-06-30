@@ -2,6 +2,7 @@ import * as React from "react";
 import { Address } from "../types/Address";
 import Cta from "./Cta";
 import tacosUrl from "../assets/images/tacos-1.avif";
+import css from "../css/css.module.scss";
 
 export interface BannerProps {
   name?: string;
@@ -27,7 +28,7 @@ const Banner = (props: BannerProps) => {
   return (
     <>
       <div
-        className={`relative z-10 w-full bg-cover bg-center h-96`}
+        className={`relative z-10 w-full bg-cover bg-center h-96 ` + css.bob}
         style={{backgroundImage: `url('${relativePrefixToRoot + tacosUrl}')`}}
       >
         <div className="absolute left-0 right-0 flex flex-col items-center">

@@ -32,6 +32,7 @@ import EditTool from "../components/EditTool";
 import BreadCrumbs from "../components/Breadcrumbs";
 import LocationStream from "../types/autogen";
 import profileSVG from "../assets/images/profile.svg";
+import "../css/test.css";
 
 /**
  * Required when Knowledge Graph data is used for a template.
