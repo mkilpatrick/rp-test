@@ -16,13 +16,12 @@ const render = async (pageContext: PageContext<any>) => {
     test = "isProd";
   }
 
-  console.log(pageProps);
-
   return `<!DOCTYPE html>
     <html lang="<!--app-lang-->">
       <head>${test} - siteDomain: ${pageProps.siteDomain}</head>
       <body>
-        <div id="reactele"><div>PageProps: ${pageProps}</div><div>${viewHtml}</div></div>
+        <div id="reactele">${viewHtml}</div>
+        <div>PageProps: ${JSON.stringify(pageProps)}</div
       </body>
     </html>`;
 };
