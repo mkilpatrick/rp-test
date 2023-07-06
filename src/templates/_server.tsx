@@ -11,7 +11,7 @@ const render = async (pageContext: PageContext<any>) => {
   const { Page, pageProps } = pageContext;
   const viewHtml = ReactDOMServer.renderToString(<Page {...pageProps} />);
 
-  let test = "local";
+  let test = "notProd";
   if (isProduction(pageProps.siteDomain)) {
     test = "isProd";
   }
@@ -20,10 +20,9 @@ const render = async (pageContext: PageContext<any>) => {
 
   return `<!DOCTYPE html>
     <html lang="<!--app-lang-->">
-      <head>${test} - ${pageProps.siteDomain}</head>
+      <head>${test} - siteDomain: ${pageProps.siteDomain}</head>
       <body>
-        <div>${pageProps}</div>
-        <div id="reactele">${viewHtml}</div>
+        <div id="reactele"><div>PageProps: ${pageProps}</div><div>${viewHtml}</div></div>
       </body>
     </html>`;
 };
