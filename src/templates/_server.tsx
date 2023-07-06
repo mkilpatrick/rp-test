@@ -18,7 +18,9 @@ const render = async (pageContext: PageContext<any>) => {
 
   return `<!DOCTYPE html>
     <html lang="<!--app-lang-->">
-      <head>${test} - siteDomain: ${pageProps.siteDomain}</head>
+      <head>
+        <meta name="description" content="${test} - siteDomain: ${pageProps.siteDomain}">
+      </head>
       <body>
         <div id="reactele">${viewHtml}</div>
         <div>PageProps: ${JSON.stringify(pageProps)}</div
