@@ -38,7 +38,6 @@ import "../css/test.css";
  * Required when Knowledge Graph data is used for a template.
  */
 export const config: TemplateConfig = {
-  hydrate: true,
   stream: {
     $id: "location-stream",
     // Defines the scope of entities that qualify for this stream.
@@ -69,7 +68,6 @@ export const config: TemplateConfig = {
     // The entity language profiles that documents will be generated for.
     localization: {
       locales: ["en"],
-      primary: false,
     },
     transform: {
       replaceOptionValuesWithDisplayNames: ["paymentOptions"],
@@ -83,7 +81,7 @@ export const config: TemplateConfig = {
  * NOTE: To preview production URLs locally, you must return document.slug from this function
  * and ensure that each entity has the slug field pouplated.
  */
-export const getPath: GetPath<TemplateProps> = ({ document }) => {
+export const getPath: GetPath<TemplateProps<LocationStream>> = ({ document }) => {
   return `foo/bar/${document.slug}`;
 };
 
@@ -103,7 +101,7 @@ export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
  * will be used to generate the inner contents of the HTML document's <head> tag.
  * This can include the title, meta tags, script tags, etc.
  */
-export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps<LocationStream>> = ({
   relativePrefixToRoot,
   document,
 }): HeadConfig => {
@@ -124,7 +122,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         attributes: {
           rel: "icon",
           type: "image/x-icon",
-          href: relativePrefixToRoot + faviconUrl,
+          href: faviconUrl,
         },
       },
     ],
@@ -138,7 +136,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
  * This function will be run during generation and pass in directly as props to the default
  * exported function.
  */
-export const transformProps: TransformProps<any> = async (data) => {
+export const transformProps: TransformProps<TemplateProps<LocationStream>> = async (data) => {
   const { dm_directoryParents, name } = data.document;
 
   (dm_directoryParents || []).push({ name: name, slug: "" });
@@ -152,22 +150,6 @@ export const transformProps: TransformProps<any> = async (data) => {
   };
 };
 
-// export interface TemplateRenderProps2<T = {}> extends TemplateProps<T> {
-//   /**
-//    * The path that the generated file will live at on the site, as defined
-//    * by the {@link GetPath} function.
-//    */
-//   path: string;
-//   /**
-//    * The relative path from the generated page to the root of the site.
-//    * i.e. The path example/path/foo would have the relativePrefixToRoot
-//    * of '../../'.
-//    */
-//   relativePrefixToRoot: string;
-// }
-
-// export type Template2<T extends TemplateRenderProps2> = (props: T) => JSX.Element;
-
 /**
  * This is the main template. It can have any name as long as it's the default export.
  * The props passed in here are the direct stream document defined by `config`.
@@ -177,9 +159,10 @@ export const transformProps: TransformProps<any> = async (data) => {
  * components any way you'd like as long as it lives in the src folder (though you should not put
  * them in the src/templates folder as this is specific for true template files).
  */
-const Location: Template<TemplateRenderProps> = ({
+const Location: Template<TemplateRenderProps<LocationStream>> = ({
   relativePrefixToRoot,
   document,
+  __meta
 }) => {
   const {
     name,
@@ -188,10 +171,11 @@ const Location: Template<TemplateRenderProps> = ({
     mainPhone,
     services,
     description,
-    siteDomain,
+    siteDomain, 
     dm_directoryParents,
   } = document;
 
+  console.log("runtime: ", getRuntime());
   const [count, setCount] = React.useState(0);
 
   return (
@@ -212,8 +196,8 @@ const Location: Template<TemplateRenderProps> = ({
             <button onClick={() => setCount(c => c + 1)}>Click Me</button>
             {count}
           </div>
-          {!getRuntime().isServerSide &&
-            <img src={relativePrefixToRoot + profileSVG} className="h-[30px] w-[30px]" alt="" />}
+          {/* {!getRuntime().isServerSide &&
+            <img src={relativePrefixToRoot + profileSVG} className="h-[30px] w-[30px]" alt="" />} */}
         </div>
       </PageLayout>
       {/* This component displays a link to the entity that represents the given page in the Knowledge Graph*/}

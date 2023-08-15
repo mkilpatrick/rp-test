@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ReactNode } from "react";
 import { HomeIcon } from "@heroicons/react/20/solid";
-import { Link } from "@yext/pages/components";
+// import { Link } from "@yext/pages/components";
 import classNames from "classnames";
 
 export interface BreadCrumbProps {
@@ -26,11 +26,12 @@ const Breadcrumb = (props: BreadCrumbProps) => {
 
   if (slug) {
     return (
-      <Link href={slug}>
-        <span className="font-bold hover:underline hover:cursor-pointer">
-          {name}
-        </span>
-      </Link>
+      // <Link href={slug}>
+      //   <span className="font-bold hover:underline hover:cursor-pointer">
+      //     {name}
+      //   </span>
+      // </Link>
+      <></>
     );
   }
 
