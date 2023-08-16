@@ -3,7 +3,7 @@
     "assets": [
       {
         "root": "dist",
-        "pattern": "assets/**/*"
+        "pattern": "subdirectory/**/*"
       }
     ],
     "features": "sites-config/features.json",
