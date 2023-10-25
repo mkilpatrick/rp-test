@@ -19,6 +19,7 @@ import Card from "../components/Card";
 import { ExternalImage } from "../types/ExternalImage";
 import Favicon from "../assets/images/yext-favicon.ico";
 import Banner from "../components/Banner";
+import corgi from "/src/assets/images/corgi.png?w=100&quality=50&format=webp";
 
 /**
  * Not required depending on your use case.
@@ -110,6 +111,7 @@ const Static: Template<ExternalImageRenderData> = ({ externalImage }) => {
   return (
     <>
       <PageLayout>
+        <img src={corgi} />
         <Banner name={"Turtlehead Tacos"} />
         <div className="centered-container">
           <div className="section space-y-14 px-10">

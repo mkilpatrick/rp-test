@@ -21,25 +21,26 @@ import {
   TransformProps,
 } from "@yext/pages";
 import { getRuntime, isProduction } from "@yext/pages/util";
-import "../index.css";
-import faviconUrl from "../assets/images/yext-favicon.ico";
-import About from "../components/About";
-import Banner from "../components/Banner";
-import Details from "../components/Details";
-import Hours from "../components/Hours";
-import PageLayout from "../components/PageLayout";
-import EditTool from "../components/EditTool";
-import BreadCrumbs from "../components/Breadcrumbs";
-import LocationStream from "../types/autogen";
-import profileSVG from "../assets/images/profile.svg";
-import "../css/test.css";
+import "../../index.css";
+import faviconUrl from "../../assets/images/yext-favicon.ico";
+import About from "../../components/About";
+import Banner from "../../components/Banner";
+import Details from "../../components/Details";
+import Hours from "../../components/Hours";
+import PageLayout from "../../components/PageLayout";
+import EditTool from "../../components/EditTool";
+import BreadCrumbs from "../../components/Breadcrumbs";
+import LocationStream from "../../types/autogen";
+import profileSVG from "../../assets/images/profile.svg";
+import "../../css/test.css";
 
 /**
  * Required when Knowledge Graph data is used for a template.
  */
 export const config: TemplateConfig = {
+  name: "scopedLocation",
   stream: {
-    $id: "location-stream",
+    $id: "location-stream-scoped",
     // Defines the scope of entities that qualify for this stream.
     // You can use entityTypes, savedFilterIds, and/or entityIds
     filter: {
@@ -82,7 +83,7 @@ export const config: TemplateConfig = {
  * and ensure that each entity has the slug field pouplated.
  */
 export const getPath: GetPath<TemplateProps<LocationStream>> = ({ document }) => {
-  return `foo/bar/${document.slug}`;
+  return `foo/bar/scoped/${document.slug}`;
 };
 
 /**
@@ -181,6 +182,7 @@ const Location: Template<TemplateRenderProps<LocationStream>> = ({
   return (
     <>
       <PageLayout>
+        <div>scope1</div>
         <Banner name={name} address={address} relativePrefixToRoot={relativePrefixToRoot}/>
         <div className="centered-container">
           <BreadCrumbs

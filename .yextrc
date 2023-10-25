@@ -1,2 +1,6 @@
 accountId: 4026087
 universe: production
+
+scope1:
+    accountId: 4026087
+    universe: production

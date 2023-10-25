@@ -1,0 +1,11 @@
+buildConfiguration:
+  buildCommand: npx pages build --scope scope1
+  installDependenciesStep:
+    command: npm install
+    requiredFiles:
+      - package.json
+      - package-lock.json
+      - .npmrc
+livePreviewConfiguration:
+  setupCommand: ":"
+assetsDir: "subdirectory/assets"
