@@ -1,0 +1,12 @@
+buildConfiguration:
+  buildCommand: npm run build:local
+  installDependenciesStep:
+    command: npm install
+    requiredFiles:
+      - package.json
+      - package-lock.json
+      - .npmrc
+livePreviewConfiguration:
+  setupCommand: ":"
+reverseProxy:
+  displayUrlPrefix: wondrous-belekoy-b6f5eb.netlify.app/subdirectory
