@@ -8,6 +8,6 @@ buildConfiguration:
       - .npmrc
 livePreviewConfiguration:
   setupCommand: ""
-  serveCommand: "npm run dev"
+  serveCommand: "npm run dev -- --port 8080"
 reverseProxy:
   displayUrlPrefix: wondrous-belekoy-b6f5eb.netlify.app/subdirectory
