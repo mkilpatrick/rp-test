@@ -9,5 +9,5 @@
     "module": "ESNext",
     "types": ["vite/client"]
   },
-  "include": ["src"]
+  "include": ["src", "global.d.ts"]
 }

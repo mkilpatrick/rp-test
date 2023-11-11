@@ -1,5 +1,3 @@
-import { fetch } from "@yext/pages/util";
-
 export default async function test(request) {
   const { pathParams, queryParams, site, body, method, headers } = request;
 
