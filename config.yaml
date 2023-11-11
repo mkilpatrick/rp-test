@@ -7,6 +7,6 @@ buildConfiguration:
       - package-lock.json
       - .npmrc
 livePreviewConfiguration:
-  setupCommand: ":"
+  setupCommand: "npm run dev"
 reverseProxy:
   displayUrlPrefix: wondrous-belekoy-b6f5eb.netlify.app/subdirectory
