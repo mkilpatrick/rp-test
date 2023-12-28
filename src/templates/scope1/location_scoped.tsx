@@ -21,7 +21,6 @@ import {
   TransformProps,
 } from "@yext/pages";
 import { getRuntime, isProduction } from "@yext/pages/util";
-import "../../index.css";
 import faviconUrl from "../../assets/images/yext-favicon.ico";
 import About from "../../components/About";
 import Banner from "../../components/Banner";
@@ -33,6 +32,11 @@ import BreadCrumbs from "../../components/Breadcrumbs";
 import LocationStream from "../../types/autogen";
 import profileSVG from "../../assets/images/profile.svg";
 import "../../css/test.css";
+import MarkdownContent from "../../components/Markdown";
+import { Address, Hours as Hours2, Link } from "@yext/pages-components";
+// import "@yext/pages-components/style.css";
+import "../../index.css";
+import { LexicalRichText } from "@yext/pages-components";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -65,6 +69,7 @@ export const config: TemplateConfig = {
       "dm_directoryParents.slug",
       "dm_directoryParents.meta",
       "dm_directoryParents.c_addressRegionDisplayName",
+      "c_lrt",
     ],
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -82,7 +87,9 @@ export const config: TemplateConfig = {
  * NOTE: To preview production URLs locally, you must return document.slug from this function
  * and ensure that each entity has the slug field pouplated.
  */
-export const getPath: GetPath<TemplateProps<LocationStream>> = ({ document }) => {
+export const getPath: GetPath<TemplateProps<LocationStream>> = ({
+  document,
+}) => {
   return `foo/bar/scoped/${document.slug}`;
 };
 
@@ -102,10 +109,9 @@ export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
  * will be used to generate the inner contents of the HTML document's <head> tag.
  * This can include the title, meta tags, script tags, etc.
  */
-export const getHeadConfig: GetHeadConfig<TemplateRenderProps<LocationStream>> = ({
-  relativePrefixToRoot,
-  document,
-}): HeadConfig => {
+export const getHeadConfig: GetHeadConfig<
+  TemplateRenderProps<LocationStream>
+> = ({ relativePrefixToRoot, document }): HeadConfig => {
   return {
     title: document.name,
     charset: "UTF-8",
@@ -137,7 +143,9 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps<LocationStream>> =
  * This function will be run during generation and pass in directly as props to the default
  * exported function.
  */
-export const transformProps: TransformProps<TemplateProps<LocationStream>> = async (data) => {
+export const transformProps: TransformProps<
+  TemplateProps<LocationStream>
+> = async (data) => {
   const { dm_directoryParents, name } = data.document;
 
   (dm_directoryParents || []).push({ name: name, slug: "" });
@@ -163,7 +171,7 @@ export const transformProps: TransformProps<TemplateProps<LocationStream>> = asy
 const Location: Template<TemplateRenderProps<LocationStream>> = ({
   relativePrefixToRoot,
   document,
-  __meta
+  __meta,
 }) => {
   const {
     name,
@@ -172,30 +180,43 @@ const Location: Template<TemplateRenderProps<LocationStream>> = ({
     mainPhone,
     services,
     description,
-    siteDomain, 
+    siteDomain,
     dm_directoryParents,
+    c_lrt,
   } = document;
 
   console.log("runtime: ", getRuntime());
   const [count, setCount] = React.useState(0);
+  console.log(document);
 
   return (
     <>
       <PageLayout>
         <div>scope1</div>
-        <Banner name={name} address={address} relativePrefixToRoot={relativePrefixToRoot}/>
+        <Banner
+          name={name}
+          address={address}
+          relativePrefixToRoot={relativePrefixToRoot}
+        />
         <div className="centered-container">
           <BreadCrumbs
             breadcrumbs={dm_directoryParents}
             baseUrl={relativePrefixToRoot}
           />
           <div className="grid gap-x-10 gap-y-10 md:grid-cols-2">
+            <MarkdownContent content="*hii*" />
             <Details address={address} phone={mainPhone} services={services} />
             {hours && <Hours title={"Restaurant Hours"} hours={hours} />}
             {description && <About name={name} description={description} />}
+            <Address address={address} />
+            <Hours2 hours={hours} />
+            <Link href={""} cta={{ link: "" }} eventName={""} />
+            {c_lrt && (
+              <LexicalRichText serializedAST={JSON.stringify(c_lrt?.json)} />
+            )}
           </div>
           <div>
-            <button onClick={() => setCount(c => c + 1)}>Click Me</button>
+            <button onClick={() => setCount((c) => c + 1)}>Click Me</button>
             {count}
           </div>
           {/* {!getRuntime().isServerSide &&

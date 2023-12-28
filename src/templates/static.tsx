@@ -107,9 +107,16 @@ export const getHeadConfig: GetHeadConfig<
  * This is the main template. It can have any name as long as it's the default export.
  * The props passed in here are the direct result from `transformProps`.
  */
-const Static: Template<ExternalImageRenderData> = ({ externalImage, secret }) => {
+const Static: Template<ExternalImageRenderData> = ({
+  externalImage,
+  secret,
+  document,
+}) => {
   console.log(YEXT_PUBLIC_UNIVERSE);
   console.log(secret);
+  console.log("You can use YEXT_PUBLIC_UNIVERSE for this");
+  console.log(document);
+
   return (
     <>
       <PageLayout>

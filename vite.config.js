@@ -15,10 +15,18 @@ export default defineConfig({
     //     "@yext/react-components/**"
     //   ]
     // }),
-    imagetools(), react(), yextSSG()],
+    imagetools(), react(), yextSSG({})],
   // ssr: {
   //   noExternal: ["@yext/react-components"]
   // },
+  // optimizeDeps: {
+  //   exclude: ["@yext/react-components"],
+  // },
+  // build: {
+  //   commonjsOptions: {
+  //     esmExternals: ["@yext/react-components"]
+  //   },
+  // }
   // optimizeDeps: {
   //   exclude: ["@yext/chat-ui-react"],
   //   // esbuildOptions: {
