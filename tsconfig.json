@@ -4,10 +4,11 @@
     "strict": true,
     "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "jsx": "react",
     "outDir": "./dist",
     "module": "ESNext",
-    "types": ["vite/client"]
+    "types": ["vite/client", "node"]
   },
   "include": ["src", "global.d.ts"]
 }

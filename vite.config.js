@@ -3,11 +3,9 @@ import react from "@vitejs/plugin-react";
 import yextSSG from "@yext/pages/vite-plugin";
 import { imagetools } from "vite-imagetools";
 
-
-
 export default defineConfig({
   plugins: [
-    // legacy(), 
+    // legacy(),
     // commonjs(),
     // viteCommonjs(),
     // cjsInterop({
@@ -15,7 +13,10 @@ export default defineConfig({
     //     "@yext/react-components/**"
     //   ]
     // }),
-    imagetools(), react(), yextSSG({})],
+    imagetools(),
+    react(),
+    yextSSG(),
+  ],
   // ssr: {
   //   noExternal: ["@yext/react-components"]
   // },

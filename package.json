@@ -8,8 +8,7 @@
   "scripts": {
     "dev": "pages dev",
     "prod": "pages prod",
-    "build:local": "pages build",
-    "build": "yext pages build && yext pages generate-test-data && yext pages render",
+    "build": "pages build",
     "build:serve": "npm run build && yext pages serve",
     "serve": "yext pages serve",
     "features": "pages generate features",
@@ -28,13 +27,12 @@
     "@heroicons/react": "^2.0.18",
     "@yext/pages-components": "^1.0.0-rc.0",
     "classnames": "^2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-markdown": "^8.0.7",
     "react-phone-number-input": "^3.2.25",
     "remark-gfm": "^4.0.0",
-    "tailwind-merge": "^1.13.2",
-    "@yext/sites-components": "1.0.0-rc.5"
+    "tailwind-merge": "^1.13.2"
   },
   "devDependencies": {
     "@types/node": "^20.9.1",
@@ -55,7 +53,7 @@
     "systemjs": "^6.14.2",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.1.6",
-    "vite": "5.0.9",
+    "vite": "^5.0.10",
     "vite-imagetools": "^5.0.9"
   },
   "yextCliVersion": "0.1_381"

@@ -1,9 +1,12 @@
-import path from "node:path";
+import { PagesHttpRequest, PagesHttpResponse } from "@yext/pages/*";
+import { Foo } from "../../components/ImportTest";
 
-export default async function test(request) {
+export default async function test(
+  request: PagesHttpRequest
+): Promise<PagesHttpResponse> {
   const { pathParams, queryParams, site, body, method, headers } = request;
-  // console.log(path.resolve("."));
-  console.log(SECRET);
+
+  console.log(Foo);
 
   // const output = generate("Write a database schema for a hotel")
   const res = await fetch("https://pokeapi.co/api/v2/pokemon/ditto");
@@ -14,7 +17,7 @@ export default async function test(request) {
 
   return {
     body: JSON.stringify(json) + SECRET,
-    headers: null,
+    headers: {},
     statusCode: 200,
   };
 }

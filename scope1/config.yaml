@@ -8,4 +8,3 @@ buildConfiguration:
       - .npmrc
 livePreviewConfiguration:
   setupCommand: ":"
-assetsDir: "subdirectory/assets"
