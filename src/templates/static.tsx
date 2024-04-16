@@ -119,6 +119,10 @@ const Static: Template<ExternalImageRenderData> = ({
   console.log("You can use YEXT_PUBLIC_UNIVERSE for this");
   console.log("is prod", IS_PRODUCTION);
 
+  React.useEffect(() => {
+    console.log("is prod useEffect", IS_PRODUCTION);
+  }, []);
+
   return (
     <>
       <PageLayout>
