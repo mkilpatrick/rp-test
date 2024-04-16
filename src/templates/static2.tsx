@@ -20,8 +20,6 @@ import { ExternalImage } from "../types/ExternalImage";
 import Favicon from "../assets/images/yext-favicon.ico";
 import Banner from "../components/Banner";
 import corgi from "/src/assets/images/corgi.png?w=100&quality=50&format=webp";
-import { Button } from "@saatva-bits/pattern-library.components.button";
-import "@saatva-bits/pattern-library.styles.config/_index.scss";
 import { getRuntime, isProduction } from "@yext/pages/util";
 
 /**

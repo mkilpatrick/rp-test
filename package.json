@@ -19,12 +19,11 @@
     "generate-notices": "generate-license-file --input package.json --output ./THIRD-PARTY-NOTICES --overwrite"
   },
   "engines": {
-    "node": "^18.0.0 || >=20.0.0"
+    "node": "^18.4.0 || >=20.0.0"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
-    "@saatva-bits/pattern-library.components.button": "^2.0.2",
     "@yext/pages-components": "^1.0.0-rc.6",
     "classnames": "^2.3.2",
     "react": "^17.0.2",
