@@ -37,16 +37,16 @@ import { Address, HoursTable as Hours2, Link } from "@yext/pages-components";
 // import "@yext/pages-components/style.css";
 import "../../index.css";
 import { LexicalRichText } from "@yext/pages-components";
-import cat from "/src/assets/scope1/images/cat.jpeg";
+import dog from "/src/assets/scope2/images/dog.webp";
 
 /**
  * Required when Knowledge Graph data is used for a template.
  */
 export const config: TemplateConfig = {
   name: "scopedLocation",
-  slugField: "name",
+  slugField: "uid",
   stream: {
-    $id: "location-stream-scoped",
+    $id: "location-stream-scoped2",
     // Defines the scope of entities that qualify for this stream.
     // You can use entityTypes, savedFilterIds, and/or entityIds
     filter: {
@@ -92,7 +92,7 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps<LocationStream>> = ({
   document,
 }) => {
-  return `foo/bar/scoped1/${document.slug}`;
+  return `foo/bar/scoped2/${document.slug}`;
 };
 
 /**
@@ -194,8 +194,8 @@ const Location: Template<TemplateRenderProps<LocationStream>> = ({
   return (
     <>
       <PageLayout>
-        <div>scope1</div>
-        <img src={cat} />
+        <div>scope2</div>
+        <img src={dog} />
         <Banner
           name={name}
           address={address}

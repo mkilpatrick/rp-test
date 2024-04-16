@@ -1,5 +1,5 @@
 buildConfiguration:
-  buildCommand: npm run build:local
+  buildCommand: npm run build
   installDependenciesStep:
     command: npm install
     requiredFiles:
@@ -9,5 +9,18 @@ buildConfiguration:
 livePreviewConfiguration:
   setupCommand: ""
   serveCommand: "npm run dev -- --port 8080"
-reverseProxy:
-  displayUrlPrefix: wondrous-belekoy-b6f5eb.netlify.app/subdirectory
+serving:
+  reverseProxyPrefix: wondrous-belekoy-b6f5eb.netlify.app/subdirectory
+
+siteStream:
+  id: my-site-stream
+  fields:
+    - id
+    - meta
+    - name
+    - logo
+  localization:
+    locales:
+      - en
+    primary: false
+  entityId: turtlehead-tacos-site

@@ -21,21 +21,21 @@ import {
   TransformProps,
 } from "@yext/pages";
 import { getRuntime, isProduction } from "@yext/pages/util";
-import faviconUrl from "../../assets/images/yext-favicon.ico";
-import About from "../../components/About";
-import Banner from "../../components/Banner";
-import Details from "../../components/Details";
-import Hours from "../../components/Hours";
-import PageLayout from "../../components/PageLayout";
-import EditTool from "../../components/EditTool";
-import BreadCrumbs from "../../components/Breadcrumbs";
-import LocationStream from "../../types/autogen";
-import profileSVG from "../../assets/images/profile.svg";
-import "../../css/test.css";
-import MarkdownContent from "../../components/Markdown";
+import faviconUrl from "../assets/images/yext-favicon.ico";
+import About from "../components/About";
+import Banner from "../components/Banner";
+import Details from "../components/Details";
+import Hours from "../components/Hours";
+import PageLayout from "../components/PageLayout";
+import EditTool from "../components/EditTool";
+import BreadCrumbs from "../components/Breadcrumbs";
+import LocationStream from "../types/autogen";
+import profileSVG from "../assets/images/profile.svg";
+import "../css/test.css";
+import MarkdownContent from "../components/Markdown";
 import { Address, HoursTable as Hours2, Link } from "@yext/pages-components";
 // import "@yext/pages-components/style.css";
-import "../../index.css";
+import "../index.css";
 import { LexicalRichText } from "@yext/pages-components";
 import cat from "/src/assets/scope1/images/cat.jpeg";
 
@@ -44,9 +44,9 @@ import cat from "/src/assets/scope1/images/cat.jpeg";
  */
 export const config: TemplateConfig = {
   name: "scopedLocation",
-  slugField: "name",
+  slugField: "id",
   stream: {
-    $id: "location-stream-scoped",
+    $id: "location-stream-scoped-root",
     // Defines the scope of entities that qualify for this stream.
     // You can use entityTypes, savedFilterIds, and/or entityIds
     filter: {
@@ -92,7 +92,7 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps<LocationStream>> = ({
   document,
 }) => {
-  return `foo/bar/scoped1/${document.slug}`;
+  return `foo/bar/scoped_root/${document.slug}`;
 };
 
 /**
@@ -194,7 +194,7 @@ const Location: Template<TemplateRenderProps<LocationStream>> = ({
   return (
     <>
       <PageLayout>
-        <div>scope1</div>
+        <div>scope at root</div>
         <img src={cat} />
         <Banner
           name={name}

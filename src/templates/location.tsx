@@ -21,36 +21,37 @@ import {
   TransformProps,
 } from "@yext/pages";
 import { getRuntime, isProduction } from "@yext/pages/util";
-import faviconUrl from "../../assets/images/yext-favicon.ico";
-import About from "../../components/About";
-import Banner from "../../components/Banner";
-import Details from "../../components/Details";
-import Hours from "../../components/Hours";
-import PageLayout from "../../components/PageLayout";
-import EditTool from "../../components/EditTool";
-import BreadCrumbs from "../../components/Breadcrumbs";
-import LocationStream from "../../types/autogen";
-import profileSVG from "../../assets/images/profile.svg";
-import "../../css/test.css";
-import MarkdownContent from "../../components/Markdown";
-import { Address, HoursTable as Hours2, Link } from "@yext/pages-components";
+import faviconUrl from "../assets/images/small_favicon.ico";
+import About from "../components/About";
+import Banner from "../components/Banner";
+import Details from "../components/Details";
+import Hours from "../components/Hours";
+import PageLayout from "../components/PageLayout";
+import EditTool from "../components/EditTool";
+import BreadCrumbs from "../components/Breadcrumbs";
+import LocationStream from "../types/autogen";
+import profileSVG from "../assets/images/profile.svg";
+import "../css/test.css";
+import MarkdownContent from "../components/Markdown";
+import { Address, Hours as Hours2, Link } from "@yext/pages-components";
 // import "@yext/pages-components/style.css";
-import "../../index.css";
+import "../index.css";
 import { LexicalRichText } from "@yext/pages-components";
-import cat from "/src/assets/scope1/images/cat.jpeg";
+import { type Foo } from "../components/test";
 
 /**
  * Required when Knowledge Graph data is used for a template.
  */
 export const config: TemplateConfig = {
-  name: "scopedLocation",
-  slugField: "name",
+  name: "location",
+  // slugField: "id",
   stream: {
-    $id: "location-stream-scoped",
+    $id: "location-stream-aaa",
     // Defines the scope of entities that qualify for this stream.
     // You can use entityTypes, savedFilterIds, and/or entityIds
     filter: {
       entityTypes: ["location"],
+      // entityIds: ["15995"],
     },
     // Specifies the exact data that each generated document will contain.
     // This data is passed in directly as props to the default exported function.
@@ -60,26 +61,26 @@ export const config: TemplateConfig = {
       "meta",
       "name",
       "address",
-      "mainPhone",
-      "description",
-      "hours",
       "slug",
-      "geocodedCoordinate",
-      "services",
-      "photoGallery",
-      "dm_directoryParents.name",
-      "dm_directoryParents.slug",
-      "dm_directoryParents.meta",
-      "dm_directoryParents.c_addressRegionDisplayName",
-      "c_lrt",
+      // "mainPhone",
+      // "description",
+      // "hours",
+      // "geocodedCoordinate",
+      // "services",
+      // "photoGallery",
+      // "dm_directoryParents.name",
+      // "dm_directoryParents.slug",
+      // "dm_directoryParents.meta",
+      // "dm_directoryParents.c_addressRegionDisplayName",
+      // "c_lrt",
     ],
     // The entity language profiles that documents will be generated for.
     localization: {
       locales: ["en"],
     },
-    transform: {
-      replaceOptionValuesWithDisplayNames: ["paymentOptions"],
-    },
+    // transform: {
+    //   replaceOptionValuesWithDisplayNames: ["paymentOptions"],
+    // },
   },
 };
 
@@ -92,7 +93,7 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps<LocationStream>> = ({
   document,
 }) => {
-  return `foo/bar/scoped1/${document.slug}`;
+  return `${document.slug}`;
 };
 
 /**
@@ -178,57 +179,39 @@ const Location: Template<TemplateRenderProps<LocationStream>> = ({
   const {
     name,
     address,
-    hours,
-    mainPhone,
-    services,
-    description,
-    siteDomain,
-    dm_directoryParents,
-    c_lrt,
+    // hours,
+    // mainPhone,
+    // services,
+    // description,
+    // siteDomain,
+    // dm_directoryParents,
+    // c_lrt,
+    _site,
+    locale,
   } = document;
 
-  console.log("runtime: ", getRuntime());
+  // console.log("runtime: ", getRuntime());
   const [count, setCount] = React.useState(0);
-  console.log(document);
+  // console.log(document);
+  console.log("LOCATION");
+  console.log("siteStream", JSON.stringify(_site));
+  let foo: Foo = "hello";
+  console.log(foo);
 
   return (
-    <>
+    <div className="tailwind">
       <PageLayout>
-        <div>scope1</div>
-        <img src={cat} />
+        <div>LOCATION {locale}</div>
+        <div className="text-orange underline">Hello Green?</div>
         <Banner
           name={name}
           address={address}
           relativePrefixToRoot={relativePrefixToRoot}
         />
-        <div className="centered-container">
-          <BreadCrumbs
-            breadcrumbs={dm_directoryParents}
-            baseUrl={relativePrefixToRoot}
-          />
-          <div className="grid gap-x-10 gap-y-10 md:grid-cols-2">
-            <MarkdownContent content="*hii*" />
-            <Details address={address} phone={mainPhone} services={services} />
-            {hours && <Hours title={"Restaurant Hours"} hours={hours} />}
-            {description && <About name={name} description={description} />}
-            <Address address={address} />
-            <Hours2 hours={hours} />
-            <Link href={""} cta={{ link: "" }} eventName={""} />
-            {c_lrt && (
-              <LexicalRichText serializedAST={JSON.stringify(c_lrt?.json)} />
-            )}
-          </div>
-          <div>
-            <button onClick={() => setCount((c) => c + 1)}>Click Me</button>
-            {count}
-          </div>
-          {/* {!getRuntime().isServerSide &&
-            <img src={relativePrefixToRoot + profileSVG} className="h-[30px] w-[30px]" alt="" />} */}
-        </div>
       </PageLayout>
       {/* This component displays a link to the entity that represents the given page in the Knowledge Graph*/}
-      {!isProduction(siteDomain) && <EditTool data={document} />}
-    </>
+      {/* {!isProduction(siteDomain) && <EditTool data={document} />} */}
+    </div>
   );
 };
 

@@ -22,7 +22,7 @@ import Banner from "../components/Banner";
 import corgi from "/src/assets/images/corgi.png?w=100&quality=50&format=webp";
 import { Button } from "@saatva-bits/pattern-library.components.button";
 import "@saatva-bits/pattern-library.styles.config/_index.scss";
-import { IS_PRODUCTION } from "@yext/pages/util";
+import { getRuntime, isProduction } from "@yext/pages/util";
 
 /**
  * Not required depending on your use case.
@@ -30,8 +30,7 @@ import { IS_PRODUCTION } from "@yext/pages/util";
 export const config: StaticTemplateConfig = {
   // The name of the feature. If not set the name of this file will be used (without extension).
   // Use this when you need to override the feature name.
-  name: "turtlehead-tacos",
-  locales: ["en", "es"],
+  name: "turtlehead-tacos2",
 };
 
 /**
@@ -66,8 +65,8 @@ export const transformProps: TransformProps<ExternalImageData> = async (
  * NOTE: This currently has no impact on the local dev path. Local dev urls currently
  * take on the form: featureName/entityId
  */
-export const getPath: GetPath<ExternalImageData> = (props) => {
-  return `${props.document.locale}/foobar.html`;
+export const getPath: GetPath<ExternalImageData> = () => {
+  return `static2.html`;
 };
 
 type ExternalImageRenderData = TemplateRenderProps & {
@@ -81,9 +80,9 @@ type ExternalImageRenderData = TemplateRenderProps & {
  * will be used to generate the inner contents of the HTML document's <head> tag.
  * This can include the title, meta tags, script tags, etc.
  */
-export const getHeadConfig: GetHeadConfig<
-  TemplateRenderProps
-> = (): HeadConfig => {
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = (
+  props
+): HeadConfig => {
   return {
     title: "Static Page Example",
     charset: "UTF-8",
@@ -105,7 +104,20 @@ export const getHeadConfig: GetHeadConfig<
         },
       },
     ],
+    other: foo(),
   };
+};
+
+const foo = () => {
+  return `
+    <script>
+      if (window.location.href.includes('localhost')) {
+        console.log('local');
+      } else {
+        console.log('prod');
+      }
+    </script>
+  `;
 };
 
 /**
@@ -120,13 +132,13 @@ const Static: Template<ExternalImageRenderData> = ({
   console.log(YEXT_PUBLIC_UNIVERSE);
   console.log(secret);
   console.log("You can use YEXT_PUBLIC_UNIVERSE for this");
-  console.log("is prod", IS_PRODUCTION);
+  console.log(document);
 
   return (
     <>
       <PageLayout>
         <img src={corgi} />
-        <Banner name={`Turtlehead Tacos ${document.locale}`} />
+        <Banner name={"Turtlehead Tacos"} />
         {/* {foo} */}
         {/* <Button kind="primary">Test</Button> */}
         <div className="centered-container">
