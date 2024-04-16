@@ -20,7 +20,6 @@ import { ExternalImage } from "../types/ExternalImage";
 import Favicon from "../assets/images/yext-favicon.ico";
 import Banner from "../components/Banner";
 import corgi from "/src/assets/images/corgi.png?w=100&quality=50&format=webp";
-import { IS_PRODUCTION } from "@yext/pages/util";
 
 /**
  * Not required depending on your use case.
