@@ -12,7 +12,6 @@ import * as React from "react";
 import {
   GetHeadConfig,
   GetPath,
-  GetRedirects,
   HeadConfig,
   Template,
   TemplateConfig,
@@ -93,16 +92,6 @@ export const getPath: GetPath<TemplateProps<LocationStream>> = ({
   document,
 }) => {
   return `foo/bar/scoped2/${document.slug}`;
-};
-
-/**
- * Defines a list of paths which will redirect to the path created by getPath.
- *
- * NOTE: This currently has no impact on the local dev path. Redirects will be setup on
- * a new deploy.
- */
-export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-  return [`index-old/${document.locale}/${document.id.toString()}`];
 };
 
 /**
