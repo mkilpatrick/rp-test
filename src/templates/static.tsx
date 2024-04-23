@@ -20,6 +20,7 @@ import { ExternalImage } from "../types/ExternalImage";
 import Favicon from "../assets/images/yext-favicon.ico";
 import Banner from "../components/Banner";
 import corgi from "/src/assets/images/corgi.png?w=100&quality=50&format=webp";
+import { isProduction } from "@yext/pages/util";
 
 /**
  * Not required depending on your use case.
@@ -117,15 +118,10 @@ const Static: Template<ExternalImageRenderData> = ({
   console.log(YEXT_PUBLIC_UNIVERSE);
   console.log(secret);
   console.log("You can use YEXT_PUBLIC_UNIVERSE for this");
-  // console.log("is prod", window.IS_PRODUCTION);
-  if (typeof window !== "undefined") {
-    console.log("is prod", window.IS_PRODUCTION);
-  }
+  console.log("is prod", isProduction());
 
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      console.log("is prod useEffect", window.IS_PRODUCTION);
-    }
+    console.log("is prod useEffect", isProduction());
   }, []);
 
   return (
